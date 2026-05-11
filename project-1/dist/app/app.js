@@ -15,9 +15,32 @@ const loggerMiddleware = (req, res, next) => {
 // app.get("/:id", (req: Request, res: Response) => {
 // console.log(req.params.id); //output: 123
 app.get("/", loggerMiddleware, (req, res) => {
-    // console.log(req.query); //output: { name: 'John' } 
     // http://localhost:3000?email=shuvo@gmail.com&name=shuvo
+    // console.log(req.query); //output: { name: 'John' }
     res.send("Hello World!");
+});
+//ROUTES
+const userRouter = express.Router();
+const productRouter = express.Router();
+app.use("/api", userRouter);
+app.use("/api", productRouter);
+userRouter.post("/users/create-user", (req, res) => {
+    const user = req.body;
+    console.log(user);
+    res.json({
+        success: true,
+        message: "User data received successfully",
+        data: user,
+    });
+});
+productRouter.post("/products/create-product", (req, res) => {
+    const product = req.body;
+    console.log(product);
+    res.json({
+        success: true,
+        message: "Product data received successfully",
+        data: product,
+    });
 });
 app.post("/", (req, res) => {
     res.json({
