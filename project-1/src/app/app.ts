@@ -22,10 +22,19 @@ const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
 
 // app.get("/:id", (req: Request, res: Response) => {
 // console.log(req.params.id); //output: 123
-app.get("/", loggerMiddleware, (req: Request, res: Response) => {
+// app.get("/", loggerMiddleware, (req: Request, res: Response) => {
   // http://localhost:3000?email=shuvo@gmail.com&name=shuvo
   // console.log(req.query); //output: { name: 'John' }
-  res.send("Hello World!");
+  // res.send("Hello World!");
+// });
+
+//EXPRESS ERROR HANDLING
+app.get("/", loggerMiddleware, async(req: Request, res: Response, next: NextFunction) => {
+  try{
+    // res.send(somethingDoesNotExist); // This will throw a ReferenceError
+  } catch (error){
+    next(error); // Pass the error to the global error-handling middleware
+  }
 });
 
 //ROUTES
@@ -58,6 +67,24 @@ productRouter.post("/products/create-product", (req: Request, res: Response) => 
 app.post("/", (req: Request, res: Response) => {
   res.json({
     message: "POST request received!",
+  });
+});
+
+//Route ERROR HANDLING
+app.use((req: Request, res: Response) => {
+  res.status(400).json({
+    success: false,
+    message: "Route not found",
+  });
+});
+
+//GLOBAL ERROR HANDLING MIDDLEWARE
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  // console.log("Global error handler:", err);
+  res.status(500).json({
+    success: false,
+    message: "An unexpected error occurred",
+    error: err.message,
   });
 });
 
