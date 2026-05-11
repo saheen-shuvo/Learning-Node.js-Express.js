@@ -5,7 +5,7 @@ This repository contains hands-on practice files for learning core Node.js and E
 ## Repository Structure
 
 - `basic-nodejs.ts`  
-  Notes about Node.js fundamentals (runtime, event loop, thread pool, key features).
+  A TypeScript file containing explanatory notes/comments about Node.js fundamentals (runtime, event loop, thread pool, key features).
 
 - `event-emitter.js`  
   EventEmitter examples (creating events, passing arguments, removing listeners).
@@ -25,8 +25,8 @@ This repository contains hands-on practice files for learning core Node.js and E
 
 ## Prerequisites
 
-- Node.js (LTS recommended)
-- npm
+- Node.js 18+ (LTS recommended)
+- npm (bundled with Node.js)
 
 ## Run Examples
 
