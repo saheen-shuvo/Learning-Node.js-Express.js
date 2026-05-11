@@ -14,7 +14,8 @@ This repository contains hands-on practice files for learning core Node.js and E
   Basic CommonJS module usage with `require` and `module.exports`.
 
 - `fileSystem  module/`  
-  Synchronous and asynchronous file system examples (`readFile`, `writeFile`, `appendFile`, `unlink`, and sync variants) with sample text files in `texts/`.
+  Synchronous and asynchronous file system examples (`readFile`, `writeFile`, `appendFile`, `unlink`, and sync variants) with sample text files in `texts/`.  
+  > Note: the directory name in this repo intentionally contains two spaces: `fileSystem␠␠module`.
 
 - `stream-buffer.js`  
   Raw Node.js HTTP server example using readable streams to serve file content.
