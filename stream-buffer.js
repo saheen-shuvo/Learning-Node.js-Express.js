@@ -11,11 +11,19 @@ server.on("request", (req, res) => {
     const readStream = fs.createReadStream(process.cwd() + "/read.txt");
 
     readStream.on("data", (chunk) => {
+      res.statusCode = 200;
       res.write(chunk);
     });
 
     readStream.on("end", () => {
-      res.end();
+      res.statusCode = 200;
+      res.end("File read successfully");
+    });
+
+    readStream.on("error", (err) => {
+      console.log(err);
+      res.statusCode = 500;
+      res.end("Error reading file");
     });
   }
 });
